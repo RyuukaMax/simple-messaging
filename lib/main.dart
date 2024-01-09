@@ -18,10 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff333333)),
         textTheme: GoogleFonts.mulishTextTheme(ThemeData().textTheme),
       ),
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Simple Messaging App')),
-        body: const LoginView(),
-      ),
+      home: const LoginView(),
     );
   }
 }

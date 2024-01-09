@@ -10,9 +10,12 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => LogUserBloc(),
-      child: const _LoginView(),
+    return Scaffold(
+      appBar: AppBar(title: const Text('Simple Messaging App')),
+      body: BlocProvider(
+        create: (_) => LogUserBloc(),
+        child: const _LoginView(),
+      ),
     );
   }
 }

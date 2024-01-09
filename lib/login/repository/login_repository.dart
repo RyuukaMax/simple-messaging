@@ -1,12 +1,10 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-
-const baseUrl =
-    'https://bowerbird-test-api-production-42f964da9407.herokuapp.com/api/v1';
+import 'package:simple_messaging/helper/strings.dart';
 
 class LoginRepository {
-  Future<void> login(String email, String password) async {
+  Future<String> login(String email, String password) async {
     final response = await http.post(
       Uri.parse('$baseUrl/login'),
       headers: <String, String>{
@@ -24,8 +22,7 @@ class LoginRepository {
     print('response: $respJson');
 
     if (response.statusCode == 200) {
-      // return Album.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
-      print('jwt token: $respJson["jwt_token"]');
+      return respJson['jwt_token'];
     } else {
       if (respJson.containsKey('message')) {
         throw Exception(respJson['message']);

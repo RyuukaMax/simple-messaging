@@ -20,6 +20,7 @@ dependencies:
   flutter_bloc: ^8.1.3
   hooked_bloc: ^1.4.3
   flutter_hooks: ^0.20.4
+  shared_preferences: ^2.2.2
 
   # Data Modifier
   freezed_annotation: ^2.4.1
@@ -35,6 +36,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   build_runner: ^2.4.7
   freezed: ^2.4.6
+  json_serializable: ^6.7.1
 
 flutter:
   uses-material-design: true

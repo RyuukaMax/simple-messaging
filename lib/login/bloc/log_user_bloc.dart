@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:simple_messaging/helper/strings.dart' as constants;
 import 'package:simple_messaging/login/repository/login_repository.dart';
 
 part 'log_user_event.dart';
@@ -19,7 +21,13 @@ class LogUserBloc extends Bloc<LogUserEvent, LogUserState> {
     try {
       emit(const LogUserLogging());
       if (event is LogUserAttemptLogin) {
-        await _loginRepository.login(event.email, event.password);
+        String token = await _loginRepository.login(
+          event.email,
+          event.password,
+        );
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString(constants.jwtToken, token);
+
         emit(const LogUserLogged());
       } else {
         emit(const LogUserInitial());
