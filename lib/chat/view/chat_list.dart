@@ -27,26 +27,26 @@ class _ChatList extends HookWidget {
     final state = useBlocBuilder(bloc);
 
     return Center(
-      child: FractionallySizedBox(
-        widthFactor: 0.9,
-        heightFactor: 0.9,
-        child: switch (state) {
-          LoadGroupChatLoading() ||
-          LoadGroupChatError() =>
-            const CircularProgressIndicator(),
-          LoadGroupChatLoaded() => ListView.separated(
-              separatorBuilder: (context, index) => const Divider(),
-              itemCount: state.groupChats.length,
-              itemBuilder: (_, index) {
-                return ListTile(
-                  title: Text(state.groupChats[index].name),
-                  subtitle: Text(
-                    'Last message at ${state.groupChats[index].lastMessageAt?.toString() ?? '-'}',
-                  ),
-                );
-              }),
-        },
-      ),
+      child: switch (state) {
+        LoadGroupChatLoading() ||
+        LoadGroupChatError() =>
+          const CircularProgressIndicator(),
+        LoadGroupChatLoaded() => FractionallySizedBox(
+            widthFactor: 0.9,
+            heightFactor: 0.9,
+            child: ListView.separated(
+                separatorBuilder: (context, index) => const Divider(),
+                itemCount: state.groupChats.length,
+                itemBuilder: (_, index) {
+                  return ListTile(
+                    title: Text(state.groupChats[index].name),
+                    subtitle: Text(
+                      'Last message at ${state.groupChats[index].lastMessageAt?.toString() ?? '-'}',
+                    ),
+                  );
+                }),
+          ),
+      },
     );
   }
 }
