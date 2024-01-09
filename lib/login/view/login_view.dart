@@ -63,7 +63,6 @@ class _LoginView extends HookWidget {
         heightFactor: 0.9,
         child: Form(
           key: formKey,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
